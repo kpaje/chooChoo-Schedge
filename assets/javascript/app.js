@@ -86,4 +86,11 @@ var handlers = {
 
         actions.createRowData();
     }),
+
+    scrollAccordianContent: $('.collapse').on('shown.bs.collapse', function() {
+        $('html,body').animate({
+            scrollTop: $('.card-body').offset().top
+        });
+    }),
 };
+

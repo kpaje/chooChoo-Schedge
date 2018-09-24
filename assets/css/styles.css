@@ -1,10 +1,61 @@
+body {
+    font-family: 'Shrikhand', cursive;
+    background-color: #B7B7B9;
+}
+
+h1 {
+    font-size: 4em;
+}
+
 #train-table th,
 td {
   display: inline-block;
   width: 16.575%;
 }
 
-.jumbotron{
-    background-color: blue;
-    color: white;
+tr { 
+    border-bottom-color: #6BD7C4,
+}
+
+.jumbotron {
+    background-color: #616E74;
+    color:#6BD7C4;
+    border: solid;
+    border-width: 0.75em;
+    border-color: #753B83;
+}
+
+.card {
+    font-family: 'Teko', sans-serif;
+    font-size: larger;
+    background-color: #B7B7B9;
+    color:#753B83;
+    border-width: thick;
+    border-color: #616E74;
+}
+
+.btn, 
+.btn-block {
+    background-color: #616E74;
+    color:#6BD7C4;
+    border: none;
+}
+
+.btn:hover,
+.btn-block:hover {
+    cursor: pointer;
+    background-color: #616E74;
+    color:#6BD7C4;
+    text-decoration: none;
+    border: #753B83;
+
+}
+
+.btn:focus,
+.btn-block:focus {
+    outline: 0;
+}
+
+#add-train-btn {
+    margin-bottom: 1em;
 }

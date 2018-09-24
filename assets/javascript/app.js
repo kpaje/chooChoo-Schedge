@@ -16,43 +16,40 @@ var actions = {
     nextArrival : '',
 
     getUserInput: function() {
-        this.trainName = $('#name-input').val().trim();
+        this.trainName   = $('#name-input').val().trim();
         this.destination = $('#destination-input').val().trim();
-        this.frequency = $('#frequency-input').val();
-        this.nextArrival = $('#nextArrival-input').val();
+        this.frequency   = $('#frequency-input').val().trim();
+        this.nextArrival = $('#nextArrival-input').val().trim();
     },
     uploadData: function() {
         return database.ref().push({
-            name: this.trainName,
+            name:        this.trainName,
             destination: this.destination,
-            frequency: this.frequency,
+            frequency:   this.frequency,
             arrival: this.nextArrival
         });
     },
     clearTextBoxes: function() {
-        // varArray = Object.keys( window );
-        // for (let i = 0; i < varArray.length; i++) {
-        //     idName = '#' + varArray[i] + '-input';
-        //     console.log(varArray[i]);
-        //     console.log($(idName).val(''));
-        // };
         $('#name-input').val('');
         $('#destination-input').val('');
         $('#frequency-input').val('');
         $('#nextArrival-input').val('');
     },
     storeChildSnapShot: function(childSnapshot) {
-        this.trainName = childSnapshot.val().name;
+        this.trainName   = childSnapshot.val().name;
         this.destination = childSnapshot.val().destination;
-        this.frequency = childSnapshot.val().frequency;
-        this.nextArrival = childSnapshot.val().nextArrival;
+        this.frequency   = childSnapshot.val().frequency;
+        this.nextArrival = childSnapshot.val().arrival;
         return;
     },
     convertTime: function(time) {
-        return moment(time, 'hh:mm').format('HH:mm');
+        return moment(time, 'hh:mm a').format('HH:mm');
     },
     calculateMinutesAway: function() {
-        return moment.duration(this.frequency).as('minutes', true);
+        var now  = moment.utc(this.frequency, "HH:mm");
+        var then = moment.utc(this.nextArrival, "HH:mm");
+        var eta  =  moment.duration(then.diff(now));
+        return moment.duration(eta).as('minutes');
     },
     createRowData: function() {
         var tableData = $('<tr>').append(
@@ -76,18 +73,11 @@ var handlers = {
     }),
     
     logEntry: database.ref().on('child_added', function(childSnapshot) {
-        console.log(childSnapshot.val());
         actions.storeChildSnapShot(childSnapshot);
-    console.log(trainName = childSnapshot.val().name);
-    console.log(destination = childSnapshot.val().destination);
-    console.log(frequency = childSnapshot.val().frequency);
-    console.log(nextArrival = childSnapshot.val().nextArrival);
-    console.log(trainName = childSnapshot.val().name);
-
         actions.createRowData();
     }),
 
-    scrollAccordianContent: $('.collapse').on('shown.bs.collapse', function() {
+    scrollToAccordianContent: $('.collapse').on('shown.bs.collapse', function() {
         $('html,body').animate({
             scrollTop: $('.card-body').offset().top
         });

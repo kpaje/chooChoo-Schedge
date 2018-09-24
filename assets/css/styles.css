@@ -13,8 +13,14 @@ td {
   width: 16.575%;
 }
 
-tr { 
-    border-bottom-color: #6BD7C4,
+/* 
+=============
+    THEME
+=============
+*/
+
+#currentSched {
+    color: #616E74;
 }
 
 .jumbotron {
@@ -34,6 +40,12 @@ tr {
     border-color: #616E74;
 }
 
+/* 
+==============
+    BUTTONS
+==============
+*/
+
 .btn, 
 .btn-block {
     background-color: #616E74;
@@ -52,10 +64,31 @@ tr {
 }
 
 .btn:focus,
-.btn-block:focus {
+.btn-block:focus,
+#add-train-btn:focus {
+    text-decoration: none;
     outline: 0;
+    box-shadow: none;
+}
+
+.form-control,
+.form-control:active {
+    background-color: rgb(211, 211, 211);
+    border-color: #753B83;
+}
+
+.form-control:focus {
+    background-color: rgb(211, 211, 211);
+    border-color: #753B83;
+    box-shadow: none;
 }
 
 #add-train-btn {
     margin-bottom: 1em;
+}
+
+#add-train-btn:active,
+.btn-block:active {
+    background-color: #753B83;
+    color: white;
 }

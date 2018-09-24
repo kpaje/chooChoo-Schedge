@@ -48,6 +48,7 @@ var actions = {
     calculateMinutesAway: function() {
         var now  = moment.utc(this.frequency, "HH:mm");
         var then = moment.utc(this.nextArrival, "HH:mm");
+        if (then.isBefore(now)) then.add(1, 'day');
         var eta  =  moment.duration(then.diff(now));
         return moment.duration(eta).as('minutes');
     },

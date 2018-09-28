@@ -29,6 +29,7 @@ td {
     border: solid;
     border-width: 0.75em;
     border-color: #753B83;
+    box-shadow: 0 0 4px 1px #000 inset;
 }
 
 .card {

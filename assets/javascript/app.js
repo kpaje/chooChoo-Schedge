@@ -10,20 +10,12 @@ const config = {
 firebase.initializeApp(config);
 const database = firebase.database();
 
-var trainName   = '';
-var destination = ''; 
-var boarding    = '';
-var nextArrival = '';
 
 var capture = {
-    uploadData: function() {
-        return database.ref().push({
-            name        : trainName,
-            destination : destination,
-            boarding    : boarding,
-            arrival     : nextArrival
-        });
-    },
+    trainName   : '',
+    destination : '', 
+    boarding    : '',
+    nextArrival : '',
     userInputs: function() {
         trainName   = $('#name-input').val().trim();
         destination = $('#destination-input').val().trim();
@@ -37,6 +29,14 @@ var capture = {
         boarding    = childSnapshot.val().boarding;
         nextArrival = childSnapshot.val().arrival;
         return;
+    },
+    uploadData: function() {
+        return database.ref().push({
+            name        : this.trainName,
+            destination : this.destination,
+            boarding    : this.boarding,
+            arrival     : this.nextArrival
+        });
     },
 };
 
